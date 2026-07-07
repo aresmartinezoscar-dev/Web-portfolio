@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Óscar Arés Martínez · Ingeniero de Soluciones Digitales</title>
-<meta name="description" content="Óscar Arés Martínez — Ingeniero de Soluciones Digitales. Microsoft 365, ITSM, Azure/Entra ID, automatización e IA aplicada. Candidatura a Técnico/a de Servicios Digitales T1, EMASESA.">
+<meta name="description" content="Óscar Arés Martínez — Ingeniero de Soluciones Digitales. Microsoft 365, ITSM, Azure/Entra ID, automatización e inteligencia artificial aplicada a infraestructuras críticas.">
 
 <!-- Fuentes: Space Grotesk (display), Inter (texto), JetBrains Mono (datos/etiquetas) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,10 +15,22 @@
 </head>
 <body>
 
-<!-- ============ FONDO DE FLUJO (decorativo, fijo) ============ -->
-<div class="grain" aria-hidden="true"></div>
+<!-- Textura de fondo tipo plano técnico -->
+<div class="blueprint" aria-hidden="true"></div>
 
-<!-- ============ NAVEGACIÓN ============ -->
+<!-- Barra de progreso (móvil / pantallas estrechas) -->
+<div class="progress-bar" id="progressBar" aria-hidden="true"><span></span></div>
+
+<!-- ============ MAPA DE RUTA (navegación de escritorio) ============ -->
+<nav class="route" id="route" aria-label="Mapa de recorrido">
+  <svg class="route__svg" id="routeSvg" viewBox="0 0 120 900" preserveAspectRatio="none">
+    <path id="routeTrack" fill="none" stroke-width="2"></path>
+    <path id="routeProgress" fill="none" stroke-width="2.5" stroke-linecap="round"></path>
+  </svg>
+  <div class="route__stops" id="routeStops"></div>
+</nav>
+
+<!-- ============ NAVEGACIÓN SUPERIOR ============ -->
 <header class="nav" id="nav">
   <div class="nav__inner">
     <a href="#top" class="nav__mark" aria-label="Inicio">
@@ -29,23 +41,23 @@
       </svg>
     </a>
     <nav class="nav__links" aria-label="Navegación principal">
-      <a href="#encaje">Encaje</a>
+      <a href="#especializacion">Especialización</a>
       <a href="#proyectos">Proyectos</a>
       <a href="#experiencia">Experiencia</a>
       <a href="#formacion">Formación</a>
       <a href="#tecnologias">Tecnologías</a>
       <a href="#sobre-mi">Sobre mí</a>
     </nav>
-    <a href="#contacto" class="btn btn--nav">Contactar</a>
+    <a href="#contacto" class="btn btn--nav">Contacto</a>
     <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
   <nav class="nav__mobile" id="navMobile" aria-label="Navegación móvil">
-    <a href="#encaje">Encaje con el puesto</a>
-    <a href="#proyectos">Proyectos destacados</a>
+    <a href="#especializacion">Especialización</a>
+    <a href="#proyectos">Proyectos</a>
     <a href="#experiencia">Experiencia</a>
-    <a href="#formacion">Formación y certificaciones</a>
+    <a href="#formacion">Formación</a>
     <a href="#tecnologias">Tecnologías</a>
     <a href="#sobre-mi">Sobre mí</a>
     <a href="#contacto">Contacto</a>
@@ -55,18 +67,18 @@
 <main id="top">
 
   <!-- ============ HERO ============ -->
-  <section class="hero">
+  <section class="hero snap">
     <div class="hero__inner">
-      <p class="eyebrow">Candidatura · Técnico/a de Servicios Digitales — Grupo T1 — EMASESA</p>
+      <p class="eyebrow">Ingeniería de Soluciones Digitales · Automatización · IA aplicada</p>
       <h1 class="hero__title">Óscar Arés<br>Martínez</h1>
       <p class="hero__role">Ingeniero de Soluciones Digitales</p>
       <p class="hero__sub">Microsoft&nbsp;365 · ITSM/ITIL · Azure &amp; Entra&nbsp;ID · Automatización · IA aplicada</p>
-      <p class="hero__desc">Experiencia reciente digitalizando procesos reales en EMASESA: organización documental, automatización de flujos, paneles de datos y transferencia de conocimiento experto. Perfil joven, técnico y con ejecución demostrada desde el primer proyecto.</p>
+      <p class="hero__desc">Diseño, automatizo y documento procesos digitales en entornos corporativos y de infraestructura crítica. Actualmente en EMASESA, donde combino Microsoft 365, Power Automate e inteligencia artificial aplicada para optimizar la operación de la producción de agua potable de Sevilla.</p>
 
       <div class="hero__cta">
-        <a href="#proyectos" class="btn btn--primary">Ver proyectos</a>
-        <a href="#formacion" class="btn btn--ghost">Ver formación</a>
-        <a href="#contacto" class="btn btn--ghost">Contactar</a>
+        <a href="#proyectos" class="btn btn--primary">Proyectos</a>
+        <a href="#experiencia" class="btn btn--ghost">Experiencia</a>
+        <a href="#contacto" class="btn btn--ghost">Contacto</a>
       </div>
     </div>
 
@@ -80,10 +92,8 @@
             <stop offset="100%" stop-color="var(--amber)" stop-opacity="0.55"/>
           </linearGradient>
         </defs>
-        <!-- tubería base -->
         <path d="M0,110 C150,60 250,160 400,110 C550,60 650,160 800,110 C900,80 1000,140 1200,110"
               fill="none" stroke="var(--line-strong)" stroke-width="2"/>
-        <!-- flujo animado -->
         <path id="flowPath" d="M0,110 C150,60 250,160 400,110 C550,60 650,160 800,110 C900,80 1000,140 1200,110"
               fill="none" stroke="url(#pipeGrad)" stroke-width="2.5" stroke-dasharray="10 14" class="flow__dash"/>
       </svg>
@@ -97,49 +107,49 @@
     </div>
   </section>
 
-  <!-- ============ ENCAJE CON SERVICIOS DIGITALES ============ -->
-  <section class="section" id="encaje">
+  <!-- ============ ESPECIALIZACIÓN ============ -->
+  <section class="section snap" id="especializacion">
     <div class="section__head">
-      <p class="section__eyebrow">01 — Perfil</p>
-      <h2 class="section__title">Encaje con Servicios Digitales</h2>
-      <p class="section__lede">La convocatoria T1 pide operación de puesto de trabajo, entorno Microsoft corporativo, gestión ITSM y dirección técnica de proyectos y contratos TIC. Así se alinea mi perfil con cada bloque.</p>
+      <p class="section__eyebrow">Tramo 01 — Especialización</p>
+      <h2 class="section__title">Ejes técnicos</h2>
+      <p class="section__lede">Cinco ejes sostienen mi trabajo diario: gestión de servicios TI, entorno Microsoft, identidad y seguridad, automatización de datos, y dirección de proyectos tecnológicos.</p>
     </div>
 
     <div class="fit-grid">
       <article class="fit-card">
-        <span class="fit-card__code">TRA-01</span>
-        <h3>Gestión de Servicios TI · ITIL/ITSM</h3>
-        <p>Especialización ITIL 4 Foundation (Coursera / Logical Operations). Fundamentos sólidos de gestión de incidencias, peticiones, cambios y mejora continua orientada a usuario.</p>
+        <span class="fit-card__tag">ITSM</span>
+        <h3>Gestión de Servicios TI</h3>
+        <p>Especialización ITIL 4 Foundation (Coursera / Logical Operations). Marco de trabajo para incidencias, peticiones, cambios y mejora continua orientada al usuario.</p>
       </article>
       <article class="fit-card">
-        <span class="fit-card__code">INF-01</span>
-        <h3>Microsoft 365, SharePoint, Teams, Power Automate</h3>
-        <p>Uso diario y en producción: reestructuración documental en SharePoint, automatización de actas con Power Automate y Dataverse, gestión de Outlook y Teams en entorno corporativo real.</p>
+        <span class="fit-card__tag">M365</span>
+        <h3>Microsoft 365 y automatización documental</h3>
+        <p>SharePoint, Teams, Outlook y Power Automate en producción: reestructuración documental, automatización de actas y flujos de aprobación mediante Dataverse.</p>
       </article>
       <article class="fit-card">
-        <span class="fit-card__code">SEG-02</span>
-        <h3>Azure, Entra ID, identidad y seguridad</h3>
-        <p>Formación Microsoft Learn en AZ-104, Azure AD / Entra ID, gestión de acceso, Microsoft Defender y Microsoft Purview. Base directa para la administración del entorno Microsoft corporativo.</p>
+        <span class="fit-card__tag">AZURE</span>
+        <h3>Identidad y seguridad</h3>
+        <p>Formación Microsoft Learn en AZ-104, Azure AD / Entra ID, Microsoft Defender y Microsoft Purview: administración de acceso, cumplimiento y seguridad del puesto de trabajo.</p>
       </article>
       <article class="fit-card">
-        <span class="fit-card__code">TRA-04</span>
-        <h3>Automatización, datos e inteligencia artificial</h3>
-        <p>Máster en IA e Innovación aplicado a casos reales: paneles de análisis de datos, predicción de dosis de reactivos y transferencia de conocimiento técnico mediante IA.</p>
+        <span class="fit-card__tag">IA</span>
+        <h3>Automatización y datos</h3>
+        <p>Máster en Inteligencia Artificial e Innovación aplicado a casos productivos: modelos predictivos, paneles de análisis y estructuración de conocimiento técnico.</p>
       </article>
       <article class="fit-card">
-        <span class="fit-card__code">TRA-03</span>
-        <h3>Gestión de proyectos TIC y sector público</h3>
-        <p>Coordinación de proyectos digitales en EMASESA, UGEL 01 (Perú) y AECID/ACUAFASA (Colombia): análisis de necesidades, documentación y entrega de soluciones en entornos públicos.</p>
+        <span class="fit-card__tag">PM</span>
+        <h3>Dirección de proyectos tecnológicos</h3>
+        <p>Coordinación de proyectos digitales en EMASESA, UGEL 01 (Perú) y AECID/ACUAFASA (Colombia): análisis funcional, documentación técnica y entrega en entornos públicos e internacionales.</p>
       </article>
     </div>
   </section>
 
   <!-- ============ PROYECTOS DESTACADOS ============ -->
-  <section class="section section--alt" id="proyectos">
+  <section class="section section--alt snap" id="proyectos">
     <div class="section__head">
-      <p class="section__eyebrow">02 — Práctica</p>
+      <p class="section__eyebrow">Tramo 02 — Práctica</p>
       <h2 class="section__title">Proyectos destacados</h2>
-      <p class="section__lede">Desarrollados en el área de Agua Potable de EMASESA (ETAP Carambolo), donde el puesto de trabajo, los datos y los procesos se cruzan a diario.</p>
+      <p class="section__lede">Desarrollados en el área de Agua Potable de EMASESA (ETAP Carambolo), donde convergen a diario el dato, el proceso y la infraestructura.</p>
     </div>
 
     <div class="proj-list">
@@ -148,7 +158,7 @@
         <div class="proj-card__num">01</div>
         <div class="proj-card__body">
           <h3>Reestructuración documental en SharePoint</h3>
-          <p>Reorganicé más de 10.000 archivos dispersos en una estructura documental profesional, trazable y mantenible, con nomenclatura consistente, control de versiones y versionado semántico.</p>
+          <p>Rediseñé la arquitectura documental de más de 10.000 archivos en SharePoint, sustituyendo un sistema disperso por una estructura jerárquica trazable, con convenciones de nomenclatura, control de versiones y versionado semántico aplicados de forma sistemática.</p>
           <div class="proj-card__tags">
             <span>SharePoint</span><span>Microsoft 365</span><span>Gestión documental</span>
           </div>
@@ -159,7 +169,7 @@
         <div class="proj-card__num">02</div>
         <div class="proj-card__body">
           <h3>Automatización de actas de reunión</h3>
-          <p>Diseñé un flujo con Power Automate, Microsoft Dataverse, Outlook y Teams que genera actas a partir de plantillas y las envía automáticamente a los asistentes, reduciendo el trabajo manual y estandarizando el formato.</p>
+          <p>Implementé un flujo de extremo a extremo con Power Automate, Microsoft Dataverse, Outlook y Teams que genera actas a partir de plantillas normalizadas y las distribuye automáticamente entre los asistentes, eliminando una tarea administrativa recurrente.</p>
           <div class="proj-card__tags">
             <span>Power Automate</span><span>Dataverse</span><span>Outlook</span><span>Teams</span>
           </div>
@@ -170,9 +180,9 @@
         <div class="proj-card__num">03</div>
         <div class="proj-card__body">
           <h3>Paneles web para análisis de CSV</h3>
-          <p>Desarrollé herramientas locales para filtrar y visualizar grandes volúmenes de datos operativos, con generación automática de informes en PDF, gráficas y conclusiones para agilizar la toma de decisiones.</p>
+          <p>Desarrollé herramientas locales de análisis para grandes volúmenes de datos operativos, con generación automática de informes en PDF, visualizaciones y conclusiones, reduciendo el tiempo entre la captura del dato y su uso en la toma de decisiones.</p>
           <div class="proj-card__tags">
-            <span>Python</span><span>Análisis de datos</span><span>Informes PDF</span>
+            <span>Python</span><span>Análisis de datos</span><span>Automatización de informes</span>
           </div>
         </div>
       </article>
@@ -181,9 +191,9 @@
         <div class="proj-card__num">04</div>
         <div class="proj-card__body">
           <h3>Transferencia de conocimiento experto</h3>
-          <p>Transcribí y analicé con IA conversaciones con técnicos próximos a jubilación, estructurando su conocimiento en procedimientos claros para la resolución de incidencias en la ETAP Carambolo.</p>
+          <p>Estructuré, mediante transcripción y análisis con IA, el conocimiento técnico de operarios próximos a jubilación, convirtiendo conversaciones informales en procedimientos documentados para la resolución de incidencias en la ETAP Carambolo.</p>
           <div class="proj-card__tags">
-            <span>IA</span><span>Documentación</span><span>Gestión del conocimiento</span>
+            <span>IA aplicada</span><span>Documentación técnica</span><span>Gestión del conocimiento</span>
           </div>
         </div>
       </article>
@@ -192,9 +202,9 @@
         <div class="proj-card__num">05</div>
         <div class="proj-card__body">
           <h3>Predictor de dosis de reactivos</h3>
-          <p>Construí un modelo predictivo que estima la dosis óptima de reactivos según las características del agua de entrada, con el objetivo de reducir costes, consumo energético y tiempos operativos.</p>
+          <p>Diseñé un modelo predictivo que estima la dosis óptima de reactivos según las características del agua de entrada en tiempo real, orientado a reducir costes, consumo energético y tiempos de respuesta del proceso de tratamiento.</p>
           <div class="proj-card__tags">
-            <span>Machine Learning</span><span>Optimización</span><span>Datos operativos</span>
+            <span>Machine Learning</span><span>Optimización de procesos</span><span>Datos operativos</span>
           </div>
         </div>
       </article>
@@ -203,11 +213,11 @@
   </section>
 
   <!-- ============ EXPERIENCIA ============ -->
-  <section class="section" id="experiencia">
+  <section class="section snap" id="experiencia">
     <div class="section__head">
-      <p class="section__eyebrow">03 — Trayectoria</p>
+      <p class="section__eyebrow">Tramo 03 — Trayectoria</p>
       <h2 class="section__title">Experiencia</h2>
-      <p class="section__lede">Un recorrido corto pero denso: administración pública española e internacional, investigación aplicada y liderazgo asociativo.</p>
+      <p class="section__lede">Un recorrido breve pero denso, entre la administración pública española e internacional, la investigación aplicada y la gestión de equipos.</p>
     </div>
 
     <ol class="timeline">
@@ -217,7 +227,7 @@
           <p class="timeline__period">2026 — Actualidad</p>
           <h3>Ingeniero de Procesos y Soluciones Digitales</h3>
           <p class="timeline__org">EMASESA Metropolitana · ETAP Carambolo, Sevilla</p>
-          <p>Desarrollo soluciones digitales para optimizar procesos internos mediante Microsoft 365, Power Automate, SharePoint, Python e IA aplicada.</p>
+          <p>Diseño e implemento soluciones digitales para la optimización de procesos internos, combinando Microsoft 365, Power Automate, SharePoint, Python e inteligencia artificial aplicada.</p>
         </div>
       </li>
       <li class="timeline__item">
@@ -226,7 +236,7 @@
           <p class="timeline__period">2025</p>
           <h3>Ingeniero de Soluciones Tecnológicas y Digitalización</h3>
           <p class="timeline__org">UGEL 01 · Pucallpa, Perú</p>
-          <p>Diseñé una plataforma web para el control de asistencia docente en centros educativos remotos y digitalicé procedimientos administrativos en entornos de baja conectividad, colaborando directamente con el área informática.</p>
+          <p>Diseñé una plataforma web para el control de asistencia docente en centros educativos remotos y digitalicé procedimientos administrativos en entornos de baja conectividad, en colaboración directa con el área de sistemas.</p>
         </div>
       </li>
       <li class="timeline__item">
@@ -235,7 +245,7 @@
           <p class="timeline__period">2025</p>
           <h3>Ingeniero tecnológico — Proyecto AECID</h3>
           <p class="timeline__org">ACUAFASA · Valledupar, Colombia</p>
-          <p>Desarrollé herramientas digitales y automatizaciones para un proyecto internacional de cooperación, coordinando un entorno multidisciplinar y entregando soluciones prácticas.</p>
+          <p>Desarrollé herramientas digitales y automatizaciones para un proyecto internacional de cooperación, coordinando un equipo multidisciplinar y entregando soluciones adaptadas a las necesidades del terreno.</p>
         </div>
       </li>
       <li class="timeline__item">
@@ -244,7 +254,7 @@
           <p class="timeline__period">2024 — 2025</p>
           <h3>TFG — Ingeniería en IA y Procesamiento de Datos</h3>
           <p class="timeline__org">Universidad de Sevilla · Calificación 10/10</p>
-          <p>Desarrollé de forma autónoma un sistema de IA para identificación de cantos de aves: ingeniería de datos, entrenamiento y evaluación de modelos de machine learning.</p>
+          <p>Desarrollé de forma autónoma un sistema de inteligencia artificial para la identificación de cantos de aves: ingeniería de datos, entrenamiento y validación de modelos de machine learning.</p>
         </div>
       </li>
       <li class="timeline__item timeline__item--secondary">
@@ -253,7 +263,7 @@
           <p class="timeline__period">2023 — 2025</p>
           <h3>Cofundador y formador</h3>
           <p class="timeline__org">ADESAM · Sevilla</p>
-          <p>Iniciativa formativa universitaria sobre comunicación profesional, marca personal y emprendimiento. Gestión de proyectos, formación y coordinación de actividades.</p>
+          <p>Cofundé una iniciativa formativa universitaria sobre comunicación profesional y marca personal, gestionando su desarrollo, contenidos y coordinación.</p>
         </div>
       </li>
       <li class="timeline__item timeline__item--secondary">
@@ -262,18 +272,18 @@
           <p class="timeline__period">2022 — 2023</p>
           <h3>Presidente</h3>
           <p class="timeline__org">Ruta de Hércules · Asociación Scout de Sevilla</p>
-          <p>Coordinación de equipos, planificación de actividades y toma de decisiones en un entorno asociativo con responsabilidad organizativa directa.</p>
+          <p>Presidí una asociación scout, coordinando equipos, planificando actividades y asumiendo la responsabilidad organizativa de sus proyectos.</p>
         </div>
       </li>
     </ol>
   </section>
 
   <!-- ============ FORMACIÓN Y CERTIFICACIONES ============ -->
-  <section class="section section--alt" id="formacion">
+  <section class="section section--alt snap" id="formacion">
     <div class="section__head">
-      <p class="section__eyebrow">04 — Preparación</p>
+      <p class="section__eyebrow">Tramo 04 — Preparación</p>
       <h2 class="section__title">Formación y certificaciones</h2>
-      <p class="section__lede">Formación específica agrupada por área, construida de forma deliberada para encajar en Servicios Digitales.</p>
+      <p class="section__lede">Formación específica, agrupada por área, construida de forma deliberada.</p>
     </div>
 
     <div class="edu-grid">
@@ -325,9 +335,9 @@
   </section>
 
   <!-- ============ TECNOLOGÍAS ============ -->
-  <section class="section" id="tecnologias">
+  <section class="section snap" id="tecnologias">
     <div class="section__head">
-      <p class="section__eyebrow">05 — Herramientas</p>
+      <p class="section__eyebrow">Tramo 05 — Herramientas</p>
       <h2 class="section__title">Tecnologías</h2>
     </div>
     <div class="chips">
@@ -341,29 +351,29 @@
   </section>
 
   <!-- ============ SOBRE MÍ ============ -->
-  <section class="section section--alt about" id="sobre-mi">
+  <section class="section section--alt about snap" id="sobre-mi">
     <div class="about__grid">
       <div class="about__text">
-        <p class="section__eyebrow">06 — Persona</p>
+        <p class="section__eyebrow">Tramo 06 — Enfoque</p>
         <h2 class="section__title">Sobre mí</h2>
-        <p>Soy una persona curiosa: disfruto entendiendo cómo funciona un proceso, encontrando dónde cojea y convirtiendo esa idea en algo que funciona de verdad. Eso es lo que he hecho en EMASESA, en Perú y en Colombia — con distintos contextos, mismo instinto.</p>
-        <p>Me interesa la tecnología aplicada al servicio público y a la gestión del agua, y busco un lugar donde pueda seguir aprendiendo rápido mientras aporto valor desde el primer día.</p>
+        <p>Trabajo en la intersección entre ingeniería, datos y procesos: entender un sistema a fondo antes de intervenir en él, y medir el impacto de cada cambio que propongo. Esa disciplina la he aplicado tanto en la gestión documental de una empresa pública como en proyectos internacionales de digitalización.</p>
+        <p>Es la misma disciplina que quiero seguir desarrollando en Microsoft 365, ITSM e inteligencia artificial aplicada a infraestructuras críticas: sistemas donde la fiabilidad no es opcional.</p>
       </div>
       <div class="about__facts">
         <div class="fact"><span class="fact__label">Ubicación</span><span class="fact__value">Sevilla, España</span></div>
         <div class="fact"><span class="fact__label">Idiomas</span><span class="fact__value">Español nativo · Inglés profesional avanzado</span></div>
-        <div class="fact"><span class="fact__label">Permiso</span><span class="fact__value">Conducir tipo B</span></div>
-        <div class="fact"><span class="fact__label">Disponibilidad</span><span class="fact__value">A partir del 11 de agosto</span></div>
+        <div class="fact"><span class="fact__label">Enfoque</span><span class="fact__value">Infraestructuras críticas &amp; sector público</span></div>
+        <div class="fact"><span class="fact__label">Especialización</span><span class="fact__value">Automatización + IA aplicada</span></div>
       </div>
     </div>
   </section>
 
   <!-- ============ CONTACTO ============ -->
-  <section class="section contact" id="contacto">
+  <section class="section contact snap" id="contacto">
     <div class="contact__inner">
-      <p class="section__eyebrow section__eyebrow--light">07 — Hablemos</p>
-      <h2 class="contact__title">¿Encaja mi perfil con el puesto?</h2>
-      <p class="contact__sub">Estoy disponible para una conversación sobre la candidatura a Técnico/a de Servicios Digitales T1.</p>
+      <p class="section__eyebrow section__eyebrow--light">Tramo 07 — Contacto</p>
+      <h2 class="contact__title">¿Hablamos?</h2>
+      <p class="contact__sub">Abierto a proyectos y colaboraciones en transformación digital, automatización de procesos e inteligencia artificial aplicada.</p>
 
       <div class="contact__row">
         <!-- Reemplazar por el email real si cambia -->

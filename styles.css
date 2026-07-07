@@ -1,11 +1,15 @@
 /* ============================================================
    Óscar Arés Martínez — Portfolio
    Sistema de diseño:
-   - Color: ink (fondo oscuro / texto principal), teal (flujo digital),
-     amber (acento cálido, uso puntual), paper (fondo claro).
-   - Tipografía: Space Grotesk (display), Inter (texto), JetBrains Mono (datos).
-   - Motivo: flujo — una tubería/circuito que atraviesa la página,
-     representando datos y agua moviéndose por el mismo cauce.
+   - Color: ink (texto/fondo oscuro), teal (flujo digital, acento
+     principal), amber (acento cálido puntual), paper (fondo claro
+     con un leve matiz frío, sector agua sin caer en lo literal).
+   - Tipografía: Space Grotesk (display), Inter (texto),
+     JetBrains Mono (datos, etiquetas, tramos de ruta).
+   - Motivo: la RUTA. El diagrama de flujo del hero (tubería +
+     dataflow) se convierte en un mapa de recorrido que acompaña
+     al visitante por cada "tramo" de la página, como una
+     canalización que atraviesa distintas estaciones.
    ============================================================ */
 
 :root {
@@ -29,14 +33,18 @@
 
   --container: 1120px;
   --radius: 10px;
+  --nav-h: 66px;
 }
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html { scroll-behavior: auto; scroll-snap-type: none; }
   * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
 }
 
@@ -47,6 +55,7 @@ body {
   color: var(--slate);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  position: relative;
 }
 
 h1, h2, h3 {
@@ -65,7 +74,38 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 img { max-width: 100%; display: block; }
 
-.grain { display: none; }
+/* Textura de fondo tipo "plano técnico": una retícula fina,
+   apenas perceptible, que sostiene la idea de ingeniería/UX. */
+.blueprint {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.35;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 70%);
+}
+
+/* Cada "tramo" de la ruta se ancla al viewport para que el
+   desplazamiento se sienta por etapas, no como un scroll continuo. */
+.snap {
+  scroll-snap-align: start;
+  scroll-margin-top: var(--nav-h);
+}
+
+/* ================= REVELADO CINEMATOGRÁFICO ================= */
+.section, .hero__inner, .flow {
+  opacity: 0;
+  transform: translateY(28px) scale(0.98);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.section.in-view, .hero__inner.in-view, .flow.in-view {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
 
 /* ================= BOTONES ================= */
 .btn {
@@ -102,6 +142,87 @@ img { max-width: 100%; display: block; }
   padding: 0.6em 1.3em;
   font-size: 0.88rem;
 }
+
+/* ================= BARRA DE PROGRESO (móvil) ================= */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 200;
+}
+.progress-bar span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--teal), var(--amber));
+  transition: width 0.1s linear;
+}
+@media (min-width: 1440px) {
+  .progress-bar { display: none; }
+}
+
+/* ================= MAPA DE RUTA (escritorio) ================= */
+.route {
+  position: fixed;
+  left: 26px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 92px;
+  height: 62vh;
+  max-height: 620px;
+  z-index: 90;
+  display: none;
+}
+@media (min-width: 1440px) {
+  .route { display: block; }
+}
+.route__svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+#routeTrack { stroke: var(--line-strong); }
+#routeProgress { stroke: var(--teal); }
+.route__stops { position: absolute; inset: 0; }
+.route__stop {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.route__dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2px solid var(--line-strong);
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+.route__stop.is-active .route__dot {
+  background: var(--teal);
+  border-color: var(--teal);
+  box-shadow: 0 0 0 5px rgba(18,119,127,0.15);
+}
+.route__label {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--slate-soft);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.route__stop.is-active .route__label {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--ink);
+  font-weight: 600;
+}
+.route__stop:hover .route__label { opacity: 1; transform: translateX(0); }
+.route__stop:hover .route__dot { border-color: var(--teal); }
 
 /* ================= NAV ================= */
 .nav {
@@ -169,6 +290,10 @@ img { max-width: 100%; display: block; }
   max-width: var(--container);
   margin: 0 auto;
   padding: 72px 24px 40px;
+  min-height: calc(100vh - var(--nav-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .hero__inner { max-width: 760px; }
 
@@ -222,6 +347,7 @@ img { max-width: 100%; display: block; }
   position: relative;
   margin-top: 72px;
   height: 190px;
+  transition-delay: 0.15s;
 }
 .flow__svg {
   width: 100%;
@@ -301,7 +427,7 @@ img { max-width: 100%; display: block; }
 }
 .section__lede { font-size: 1.05rem; color: var(--slate-soft); }
 
-/* ================= ENCAJE (fit-grid) ================= */
+/* ================= ESPECIALIZACIÓN (fit-grid) ================= */
 .fit-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -315,13 +441,17 @@ img { max-width: 100%; display: block; }
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 .fit-card:hover { border-color: var(--teal-light); transform: translateY(-3px); }
-.fit-card__code {
+.fit-card__tag {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--amber);
+  font-size: 0.7rem;
+  font-weight: 600;
   letter-spacing: 0.04em;
-  display: block;
-  margin-bottom: 12px;
+  color: var(--teal);
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(18,119,127,0.08);
 }
 .fit-card h3 {
   font-size: 1.08rem;

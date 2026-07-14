@@ -3,397 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Óscar Arés Martínez · Ingeniero de Soluciones Digitales</title>
-<meta name="description" content="Óscar Arés Martínez — Ingeniero de Soluciones Digitales. Microsoft 365, ITSM, Azure/Entra ID, automatización e inteligencia artificial aplicada a infraestructuras críticas.">
-
-<!-- Fuentes: Space Grotesk (display), Inter (texto), JetBrains Mono (datos/etiquetas) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
+<title>[Tu Nombre] — Portfolio OS</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- Textura de fondo tipo plano técnico -->
-<div class="blueprint" aria-hidden="true"></div>
+<!-- ======================= BOOT SCREEN ======================= -->
+<div id="boot">
+  <canvas id="stars-boot"></canvas>
+  <div class="boot-content">
+    <div class="boot-logo">[Tu Nombre]<span class="cursor-blink">_</span></div>
+    <div class="boot-status" id="bootStatus">iniciando…</div>
+    <div class="boot-bar"><div class="boot-bar-fill" id="bootFill"></div></div>
+  </div>
+</div>
 
-<!-- Barra de progreso (móvil / pantallas estrechas) -->
-<div class="progress-bar" id="progressBar" aria-hidden="true"><span></span></div>
+<!-- ======================= DESKTOP ======================= -->
+<div id="desktop" hidden>
+  <canvas id="stars-desktop"></canvas>
 
-<!-- ============ MAPA DE RUTA (navegación de escritorio) ============ -->
-<nav class="route" id="route" aria-label="Mapa de recorrido">
-  <svg class="route__svg" id="routeSvg" viewBox="0 0 120 900" preserveAspectRatio="none">
-    <path id="routeTrack" fill="none" stroke-width="2"></path>
-    <path id="routeProgress" fill="none" stroke-width="2.5" stroke-linecap="round"></path>
-  </svg>
-  <div class="route__stops" id="routeStops"></div>
-</nav>
+  <div class="topbar">
+    <span class="topbar-brand">[Tu Nombre] OS</span>
+    <span class="topbar-clock" id="clock">--:--</span>
+  </div>
 
-<!-- ============ NAVEGACIÓN SUPERIOR ============ -->
-<header class="nav" id="nav">
-  <div class="nav__inner">
-    <a href="#top" class="nav__mark" aria-label="Inicio">
-      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="17" cy="17" r="16" stroke="var(--teal)" stroke-width="1.4"/>
-        <path d="M9 20.5C11 17 13 15.5 17 15.5C21 15.5 23 13.5 25 10.5" stroke="var(--teal)" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M9 14.5C11 18 13 19.5 17 19.5C21 19.5 23 21.5 25 24.5" stroke="var(--amber)" stroke-width="1.6" stroke-linecap="round" opacity="0.85"/>
-      </svg>
-    </a>
-    <nav class="nav__links" aria-label="Navegación principal">
-      <a href="#especializacion">Especialización</a>
-      <a href="#proyectos">Proyectos</a>
-      <a href="#experiencia">Experiencia</a>
-      <a href="#formacion">Formación</a>
-      <a href="#tecnologias">Tecnologías</a>
-      <a href="#sobre-mi">Sobre mí</a>
-    </nav>
-    <a href="#contacto" class="btn btn--nav">Contacto</a>
-    <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
-      <span></span><span></span><span></span>
+  <div class="icons" id="desktopIcons">
+    <button class="icon" data-window="about">
+      <div class="glyph glyph-user"></div><span>Sobre mí.app</span>
+    </button>
+    <button class="icon" data-window="experiencia">
+      <div class="glyph glyph-briefcase"></div><span>Experiencia.app</span>
+    </button>
+    <button class="icon" data-window="formacion">
+      <div class="glyph glyph-badge"></div><span>Formación.app</span>
+    </button>
+    <button class="icon" data-window="proyectos">
+      <div class="glyph glyph-grid"></div><span>Proyectos.app</span>
+    </button>
+    <button class="icon" data-window="contacto">
+      <div class="glyph glyph-at"></div><span>Contacto.app</span>
+    </button>
+    <button class="icon" data-window="terminal">
+      <div class="glyph glyph-term"></div><span>Terminal.app</span>
     </button>
   </div>
-  <nav class="nav__mobile" id="navMobile" aria-label="Navegación móvil">
-    <a href="#especializacion">Especialización</a>
-    <a href="#proyectos">Proyectos</a>
-    <a href="#experiencia">Experiencia</a>
-    <a href="#formacion">Formación</a>
-    <a href="#tecnologias">Tecnologías</a>
-    <a href="#sobre-mi">Sobre mí</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
-</header>
 
-<main id="top">
+  <!-- ======================= WINDOWS (contenido en data.js) ======================= -->
+  <div id="windowsRoot"></div>
 
-  <!-- ============ HERO ============ -->
-  <section class="hero snap">
-    <div class="hero__inner">
-      <p class="eyebrow">Ingeniería de Soluciones Digitales · Automatización · IA aplicada</p>
-      <h1 class="hero__title">Óscar Arés<br>Martínez</h1>
-      <p class="hero__role">Ingeniero de Soluciones Digitales</p>
-      <p class="hero__sub">Microsoft&nbsp;365 · ITSM/ITIL · Azure &amp; Entra&nbsp;ID · Automatización · IA aplicada</p>
-      <p class="hero__desc">Diseño, automatizo y documento procesos digitales en entornos corporativos y de infraestructura crítica. Actualmente en EMASESA, donde combino Microsoft 365, Power Automate e inteligencia artificial aplicada para optimizar la operación de la producción de agua potable de Sevilla.</p>
+  <!-- ======================= CONTEXT MENU ======================= -->
+  <div id="ctxMenu" class="ctx-menu" hidden>
+    <button data-action="wallpaper">🎨 Cambiar fondo</button>
+    <button data-action="about">💻 Sobre este equipo</button>
+    <button data-action="arrange">🗂️ Ordenar iconos</button>
+  </div>
 
-      <div class="hero__cta">
-        <a href="#proyectos" class="btn btn--primary">Proyectos</a>
-        <a href="#experiencia" class="btn btn--ghost">Experiencia</a>
-        <a href="#contacto" class="btn btn--ghost">Contacto</a>
-      </div>
-    </div>
+  <!-- ======================= DOCK ======================= -->
+  <div class="dock" id="dock"></div>
+</div>
 
-    <!-- Elemento firma: diagrama de flujo (tubería + dataflow) -->
-    <div class="flow" role="img" aria-label="Diagrama de flujo de procesos: del dato de entrada al servicio digital entregado">
-      <svg viewBox="0 0 1200 220" class="flow__svg" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="pipeGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="var(--teal)" stop-opacity="0.15"/>
-            <stop offset="50%" stop-color="var(--teal)" stop-opacity="0.55"/>
-            <stop offset="100%" stop-color="var(--amber)" stop-opacity="0.55"/>
-          </linearGradient>
-        </defs>
-        <path d="M0,110 C150,60 250,160 400,110 C550,60 650,160 800,110 C900,80 1000,140 1200,110"
-              fill="none" stroke="var(--line-strong)" stroke-width="2"/>
-        <path id="flowPath" d="M0,110 C150,60 250,160 400,110 C550,60 650,160 800,110 C900,80 1000,140 1200,110"
-              fill="none" stroke="url(#pipeGrad)" stroke-width="2.5" stroke-dasharray="10 14" class="flow__dash"/>
-      </svg>
-      <div class="flow__nodes">
-        <div class="flow__node" style="--pos:2%"><span class="flow__dot"></span><span class="flow__label">Dato de entrada</span></div>
-        <div class="flow__node" style="--pos:22%"><span class="flow__dot"></span><span class="flow__label">SharePoint · M365</span></div>
-        <div class="flow__node" style="--pos:44%"><span class="flow__dot"></span><span class="flow__label">Power Automate</span></div>
-        <div class="flow__node" style="--pos:66%"><span class="flow__dot"></span><span class="flow__label">IA · Análisis</span></div>
-        <div class="flow__node flow__node--end" style="--pos:90%"><span class="flow__dot"></span><span class="flow__label">Servicio entregado</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ ESPECIALIZACIÓN ============ -->
-  <section class="section snap" id="especializacion">
-    <div class="section__head">
-      <p class="section__eyebrow">Tramo 01 — Especialización</p>
-      <h2 class="section__title">Ejes técnicos</h2>
-      <p class="section__lede">Estos son los cinco ejes en los que se centra mi formación y experiencia.</p>
-    </div>
-
-    <div class="fit-grid">
-      <article class="fit-card">
-        <span class="fit-card__tag">ITSM</span>
-        <h3>Gestión de Servicios TI</h3>
-        <p>Especialización ITIL 4 Foundation (Coursera / Logical Operations). Marco de trabajo para incidencias, peticiones, cambios y mejora continua orientada al usuario.</p>
-      </article>
-      <article class="fit-card">
-        <span class="fit-card__tag">M365</span>
-        <h3>Microsoft 365 y automatización documental</h3>
-        <p>SharePoint, Teams, Outlook y Power Automate en producción: reestructuración documental, automatización de actas y flujos de aprobación mediante Dataverse.</p>
-      </article>
-      <article class="fit-card">
-        <span class="fit-card__tag">AZURE</span>
-        <h3>Identidad y seguridad</h3>
-        <p>Formación Microsoft Learn en AZ-104, Azure AD / Entra ID, Microsoft Defender y Microsoft Purview: administración de acceso, cumplimiento y seguridad del puesto de trabajo.</p>
-      </article>
-      <article class="fit-card">
-        <span class="fit-card__tag">IA</span>
-        <h3>Automatización y datos</h3>
-        <p>Máster en Inteligencia Artificial e Innovación aplicado a casos productivos: modelos predictivos, paneles de análisis y estructuración de conocimiento técnico.</p>
-      </article>
-      <article class="fit-card">
-        <span class="fit-card__tag">PM</span>
-        <h3>Dirección de proyectos tecnológicos</h3>
-        <p>Coordinación de proyectos digitales en EMASESA, UGEL 01 (Perú) y AECID/ACUAFASA (Colombia): análisis funcional, documentación técnica y entrega en entornos públicos e internacionales.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ============ PROYECTOS DESTACADOS ============ -->
-  <section class="section section--alt snap" id="proyectos">
-    <div class="section__head">
-      <p class="section__eyebrow">Tramo 02 — Práctica</p>
-      <h2 class="section__title">Proyectos destacados</h2>
-      <p class="section__lede">Desarrollando proyectos en el área de Agua Potable de EMASESA (ETAP Carambolo), donde convergen a diario los datos, las incidencias y la transformación digital.</p>
-    </div>
-
-    <div class="proj-list">
-
-      <article class="proj-card">
-        <div class="proj-card__num">01</div>
-        <div class="proj-card__body">
-          <h3>Reestructuración documental en SharePoint</h3>
-          <p>Rediseñé la arquitectura documental de más de 10.000 archivos en SharePoint, sustituyendo un sistema disperso por una estructura jerárquica trazable, con convenciones de nomenclatura, control de versiones y versionado semántico aplicados de forma sistemática.</p>
-          <div class="proj-card__tags">
-            <span>SharePoint</span><span>Microsoft 365</span><span>Gestión documental</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="proj-card">
-        <div class="proj-card__num">02</div>
-        <div class="proj-card__body">
-          <h3>Automatización de actas de reunión</h3>
-          <p>Implementé un flujo de extremo a extremo con Power Automate, Microsoft Dataverse, Outlook y Teams que genera actas a partir de plantillas normalizadas y las distribuye automáticamente entre los asistentes, eliminando una tarea administrativa recurrente.</p>
-          <div class="proj-card__tags">
-            <span>Power Automate</span><span>Dataverse</span><span>Outlook</span><span>Teams</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="proj-card">
-        <div class="proj-card__num">03</div>
-        <div class="proj-card__body">
-          <h3>Paneles web para análisis de CSV</h3>
-          <p>Desarrollé herramientas locales de análisis para grandes volúmenes de datos operativos, con generación automática de informes en PDF, visualizaciones y conclusiones, reduciendo el tiempo entre la captura del dato y su uso en la toma de decisiones.</p>
-          <div class="proj-card__tags">
-            <span>Python</span><span>Análisis de datos</span><span>Automatización de informes</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="proj-card">
-        <div class="proj-card__num">04</div>
-        <div class="proj-card__body">
-          <h3>Transferencia de conocimiento experto</h3>
-          <p>Estructuré, mediante transcripción y análisis con IA, el conocimiento técnico de operarios próximos a jubilación, convirtiendo conversaciones informales en procedimientos documentados para la resolución de incidencias en la ETAP Carambolo.</p>
-          <div class="proj-card__tags">
-            <span>IA aplicada</span><span>Documentación técnica</span><span>Gestión del conocimiento</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="proj-card">
-        <div class="proj-card__num">05</div>
-        <div class="proj-card__body">
-          <h3>Predictor de dosis de reactivos</h3>
-          <p>Diseñé un modelo predictivo que estima la dosis óptima de reactivos según las características del agua de entrada en tiempo real, orientado a reducir costes, consumo energético y tiempos de respuesta del proceso de tratamiento.</p>
-          <div class="proj-card__tags">
-            <span>Machine Learning</span><span>Optimización de procesos</span><span>Datos operativos</span>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- ============ EXPERIENCIA ============ -->
-  <section class="section snap" id="experiencia">
-    <div class="section__head">
-      <p class="section__eyebrow">Tramo 03 — Trayectoria</p>
-      <h2 class="section__title">Experiencia</h2>
-    </div>
-
-    <ol class="timeline">
-      <li class="timeline__item">
-        <div class="timeline__marker"></div>
-        <div class="timeline__content">
-          <p class="timeline__period">2026 — Actualidad</p>
-          <h3>Ingeniero de Procesos y Soluciones Digitales</h3>
-          <p class="timeline__org">EMASESA Metropolitana · ETAP Carambolo, Sevilla</p>
-          <p>Diseño e implemento soluciones digitales para la optimización de procesos internos, combinando Microsoft 365, Power Automate, SharePoint, Python e IA aplicada.</p>
-        </div>
-      </li>
-      <li class="timeline__item">
-        <div class="timeline__marker"></div>
-        <div class="timeline__content">
-          <p class="timeline__period">2025</p>
-          <h3>Ingeniero de Soluciones Tecnológicas y Digitalización</h3>
-          <p class="timeline__org">UGEL 01 · Pucallpa, Perú</p>
-          <p>Diseñé una plataforma web para el control de asistencia docente en centros educativos remotos y digitalicé procedimientos administrativos en entornos de baja conectividad, en colaboración directa con el área de sistemas.</p>
-        </div>
-      </li>
-      <li class="timeline__item">
-        <div class="timeline__marker"></div>
-        <div class="timeline__content">
-          <p class="timeline__period">2025</p>
-          <h3>Ingeniero tecnológico — Proyecto AECID</h3>
-          <p class="timeline__org">ACUAFASA · Valledupar, Colombia</p>
-          <p>Desarrollé herramientas digitales y automatizaciones para un proyecto internacional de cooperación, coordinando un equipo multidisciplinar y entregando soluciones adaptadas a las necesidades del terreno.</p>
-        </div>
-      </li>
-      <li class="timeline__item">
-        <div class="timeline__marker"></div>
-        <div class="timeline__content">
-          <p class="timeline__period">2024 — 2025</p>
-          <h3>TFG — Ingeniería en IA y Procesamiento de Datos</h3>
-          <p class="timeline__org">Universidad de Sevilla · Calificación 10/10</p>
-          <p>Desarrollé de forma autónoma un sistema de inteligencia artificial para la identificación de cantos de aves: ingeniería de datos, entrenamiento y validación de modelos de machine learning.</p>
-        </div>
-      </li>
-      <li class="timeline__item timeline__item--secondary">
-        <div class="timeline__marker"></div>
-        <div class="timeline__content">
-          <p class="timeline__period">2023 — 2025</p>
-          <h3>Cofundador y formador</h3>
-          <p class="timeline__org">ADESAM · Sevilla</p>
-          <p>Cofundé una iniciativa formativa universitaria sobre comunicación profesional y marca personal, gestionando su desarrollo, contenidos y coordinación.</p>
-        </div>
-      </li>
-      <li class="timeline__item timeline__item--secondary">
-        <div class="timeline__marker"></div>
-        <div class="timeline__content">
-          <p class="timeline__period">2022 — 2023</p>
-          <h3>Presidente</h3>
-          <p class="timeline__org">Ruta de Hércules · Asociación Scout de Sevilla</p>
-          <p>Presidí una asociación scout, coordinando equipos, planificando actividades y asumiendo la responsabilidad organizativa de sus proyectos.</p>
-        </div>
-      </li>
-    </ol>
-  </section>
-
-  <!-- ============ FORMACIÓN Y CERTIFICACIONES ============ -->
-  <section class="section section--alt snap" id="formacion">
-    <div class="section__head">
-      <p class="section__eyebrow">Tramo 04 — Preparación</p>
-      <h2 class="section__title">Formación y certificaciones</h2>
-      <p class="section__lede">Formación específica, construida de forma deliberada.</p>
-    </div>
-
-    <div class="edu-grid">
-      <div class="edu-group">
-        <h3>ITSM y soporte</h3>
-        <ul>
-          <li><span>ITIL 4 Foundation Specialization</span><small>Coursera / Logical Operations</small></li>
-          <li><span>IT Support Fundamentals</span><small>Google</small></li>
-        </ul>
-      </div>
-      <div class="edu-group">
-        <h3>Microsoft y Cloud</h3>
-        <ul>
-          <li><span>Microsoft 365 Fundamentals (MS-900)</span><small>Coursera / Packt</small></li>
-          <li><span>AZ-104 · Almacenamiento en Azure</span><small>Microsoft Learn</small></li>
-          <li><span>Azure AD / Entra ID · Gestión de acceso e identidad</span><small>Microsoft Learn</small></li>
-          <li><span>Microsoft Defender y Microsoft Purview</span><small>Microsoft Learn</small></li>
-          <li><span>Security, Compliance and Identity Fundamentals</span><small>Microsoft Learn</small></li>
-        </ul>
-      </div>
-      <div class="edu-group">
-        <h3>IA e innovación</h3>
-        <ul>
-          <li><span>Máster en Inteligencia Artificial e Innovación</span><small>Founderz</small></li>
-          <li><span>IA para cada día</span><small>Mago More</small></li>
-        </ul>
-      </div>
-      <div class="edu-group">
-        <h3>Gestión</h3>
-        <ul>
-          <li><span>Foundations in Business, Strategy and Decision-Making</span><small>Harvard Business School</small></li>
-        </ul>
-      </div>
-      <div class="edu-group">
-        <h3>Sector agua</h3>
-        <ul>
-          <li><span>Gestión del agua para las ciudades del futuro</span><small>IDB</small></li>
-        </ul>
-      </div>
-      <div class="edu-group">
-        <h3>Formación académica</h3>
-        <ul>
-          <li><span>Grado en Ingeniería Electrónica, Robótica y Mecatrónica</span><small>Universidad de Sevilla · 2021–2026</small></li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="edu-note">Expediente de Microsoft Learn verificable: 16 módulos y 4 rutas de aprendizaje completadas, 11 h 31 min de formación registrada.</p>
-  </section>
-
-  <!-- ============ TECNOLOGÍAS ============ -->
-  <section class="section snap" id="tecnologias">
-    <div class="section__head">
-      <p class="section__eyebrow">Tramo 05 — Herramientas</p>
-      <h2 class="section__title">Tecnologías</h2>
-    </div>
-    <div class="chips">
-      <span>Microsoft 365</span><span>SharePoint</span><span>Teams</span><span>Outlook</span>
-      <span>Power Automate</span><span>Dataverse</span><span>Azure</span><span>Entra ID</span>
-      <span>Azure AD</span><span>ITIL 4</span><span>ITSM</span><span>Python</span>
-      <span>VBA</span><span>MATLAB</span><span>C++</span><span>APIs</span>
-      <span>Machine Learning</span><span>Análisis de datos</span><span>Informes automatizados</span>
-      <span>Microsoft Defender</span><span>Microsoft Purview</span><span>Excel avanzado</span><span>Git</span>
-    </div>
-  </section>
-
-  <!-- ============ SOBRE MÍ ============ -->
-  <section class="section section--alt about snap" id="sobre-mi">
-    <div class="about__grid">
-      <div class="about__text">
-        <p class="section__eyebrow">Tramo 06 — Enfoque</p>
-        <h2 class="section__title">Sobre mí</h2>
-        <p>Ingeniero orientado a Servicios Digitales, automatización, Microsoft 365, gestión ITSM e IA práctica, con experiencia reciente en EMASESA desarrollando soluciones digitales de impacto en entorno corporativo real.</p>
-        <p>Me gusta implicarme en los proyectos, entender el problema de fondo y construir soluciones útiles para quienes las van a utilizar. Creo que la tecnología aporta su mayor valor cuando ayuda a las personas a trabajar mejor, y suelo encontrar formas de simplificar procesos mediante la tecnología, siempre con un enfoque práctico y orientado a las personas.</p>
-      </div>
-      <div class="about__facts">
-        <div class="fact"><span class="fact__label">Ubicación</span><span class="fact__value">Sevilla, España</span></div>
-        <div class="fact"><span class="fact__label">Idiomas</span><span class="fact__value">Español nativo · Inglés profesional avanzado</span></div>
-        <div class="fact"><span class="fact__label">Especialización</span><span class="fact__value">Automatización + IA aplicada + Gestión de Proyectos</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CONTACTO ============ -->
-  <section class="section contact snap" id="contacto">
-    <div class="contact__inner">
-      <p class="section__eyebrow section__eyebrow--light">Tramo 07 — Contacto</p>
-      <h2 class="contact__title">¿Hablamos?</h2>
-      <p class="contact__sub">Abierto a proyectos y colaboraciones en transformación digital, automatización de procesos e IA.</p>
-
-      <div class="contact__row">
-        <!-- Reemplazar por el email real si cambia -->
-        <a href="mailto:aresmartinezoscar@gmail.com" class="btn btn--primary btn--light">aresmartinezoscar@gmail.com</a>
-        <!-- Reemplazar por la URL completa de LinkedIn -->
-        <a href="https://www.linkedin.com/in/óscar-arés-martínez" target="_blank" rel="noopener" class="btn btn--ghost btn--light">LinkedIn</a>
-      </div>
-      <div class="contact__meta">
-        <span>Sevilla, España</span>
-        <span>+34 673 670 920</span>
-        <!-- Si añades un CV en PDF al repositorio, descomenta el enlace de abajo -->
-        <!-- <a href="cv-oscar-ares.pdf" download>Descargar CV (PDF)</a> -->
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <p>Óscar Arés Martínez — Sevilla, España</p>
-</footer>
-
+<script src="data.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@ const ROLE = "Técnico de Servicios Digitales (T1)";
 const EMAIL = "aresmartinezoscar@gmail.com";
 const PHONE = "+34 673 670 920";
 const LINKEDIN = "https://www.linkedin.com/in/%C3%B3scar-ar%C3%A9s-mart%C3%ADnez/";
-const CVLINK = "https://tu-dominio.com/cv.pdf";
+const CVLINK = "https://aresmartinezoscar-dev.github.io/Web-portfolio/cv-oscar-ares.pdf";
 
 const CV_DATA = {
   name: NAME,

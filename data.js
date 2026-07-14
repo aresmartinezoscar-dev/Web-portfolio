@@ -3,11 +3,11 @@
 // No hace falta tocar HTML/CSS/JS para cambiar textos.
 // ============================================================
 
-const NAME = "[Tu Nombre Apellido]";
+const NAME = "Óscar Arés Martínez";
 const ROLE = "Técnico de Servicios Digitales (T1)";
-const EMAIL = "tunombre@email.com";
-const PHONE = "+34 6XX XXX XXX";
-const LINKEDIN = "https://linkedin.com/in/tu-usuario";
+const EMAIL = "aresmartinezoscar@gmail.com";
+const PHONE = "+34 673 670 920";
+const LINKEDIN = "https://www.linkedin.com/in/%C3%B3scar-ar%C3%A9s-mart%C3%ADnez/";
 const CVLINK = "https://tu-dominio.com/cv.pdf";
 
 const CV_DATA = {

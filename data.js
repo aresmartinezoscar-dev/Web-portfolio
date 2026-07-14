@@ -1,3 +1,5 @@
+
+
 // ============================================================
 // CONTENIDO — edita SOLO este archivo para actualizar tu CV.
 // No hace falta tocar HTML/CSS/JS para cambiar textos.
@@ -23,7 +25,7 @@ const CV_DATA = {
     about: {
       title: "Sobre mí.app",
       html: `
-        <h2>[Tu Nombre Apellido]</h2>
+        <h2>Óscar Arés</h2>
         <div class="meta">rol objetivo: Técnico de Servicios Digitales (T1)</div>
         <p>Técnico especializado en servicios digitales y transformación de
         procesos. Trabajo actualmente en EMASESA automatizando flujos con
@@ -82,9 +84,28 @@ const CV_DATA = {
       title: "Proyectos.app",
       html: `
         <div class="entry">
-          <h2>[completar: nombre del proyecto 1]</h2>
-          <p>Breve descripción del reto y de la solución aportada.</p>
-          <span class="tag">Power Automate</span><span class="tag">SharePoint</span>
+          <div class="meta">EMASESA · 2020 — 2025 · datos reales de planta</div>
+          <h2>Modelos predictivos de calidad del agua tratada</h2>
+          <p>Desarrollo y evaluación de 7 modelos de Machine Learning
+          (Random Forest, GBM y Ridge) para anticipar parámetros críticos
+          de salida de planta &mdash; turbidez, UV254, THM, manganeso,
+          aluminio y cloro libre &mdash; a partir de variables de proceso:
+          dosificación de coagulante/floculante/cloro, caudales, pH,
+          temperatura y estacionalidad.</p>
+          <p>Entrené los modelos con datos de 2020&ndash;2023 y los validé
+          contra todo 2025 como test real, comparando el resultado frente
+          a un modelo de regresión lineal (RLM) previo de referencia.
+          El análisis destapó dos hallazgos clave: la mayoría de modelos
+          no superaban a ese baseline &mdash; varios con R&sup2; negativo
+          en test&mdash;, y en THM_ED / THM_SD la cobertura de datos de
+          entrenamiento apenas llegaba al 27&ndash;28%, lo que limita
+          claramente su fiabilidad. Documenté ambos problemas y las
+          métricas de cada modelo (R&sup2;, MAE, cobertura) para priorizar
+          los siguientes pasos: mejorar la captura de datos antes de
+          seguir optimizando algoritmos.</p>
+          <span class="tag">Python</span><span class="tag">Random Forest</span>
+          <span class="tag">GBM</span><span class="tag">Ridge Regression</span>
+          <span class="tag">Análisis de datos</span>
         </div>
         <div class="entry">
           <h2>[completar: nombre del proyecto 2]</h2>
@@ -114,5 +135,7 @@ const CV_DATA = {
 </div>
       `
     }
+  }
+};
   }
 };
